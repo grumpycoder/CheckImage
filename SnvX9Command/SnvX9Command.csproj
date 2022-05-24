@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="CompAnalytics.X9" Version="0.2.0" />
       <PackageReference Include="System.CommandLine" Version="2.0.0-beta3.22114.1" />
       <PackageReference Include="X9.Framework" Version="1.0.7361.18408" />
     </ItemGroup>

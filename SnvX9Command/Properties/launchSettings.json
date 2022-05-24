@@ -3,7 +3,7 @@
   "profiles": {
     "SnvX9Command": {
       "commandName": "Project",
-      "commandLineArgs": "validate -f c:\\temp\\check21\\2.831RichlandCounty_20220315_1508_01_prod.c21",
+      "commandLineArgs": "extract -f c:\\temp\\check21\\1.165CityofApopka_20220317_1349_prod.c21",
       "environmentVariables": {
         
       }
