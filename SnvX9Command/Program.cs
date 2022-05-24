@@ -47,23 +47,20 @@ extractCommand.AddOption(outputOption);
 rootCommand.AddCommand(extractCommand);
 
 extractCommand.SetHandler((FileInfo input, DirectoryInfo output) => { ExtractImages(input, output); }, fileOption, outputOption);
-   
+
+var emailConfirmationCommand = new Command("email-confirm", "Email customer confirmation");
+rootCommand.AddCommand(emailConfirmationCommand);
+
+emailConfirmationCommand.SetHandler((FileInfo input) => { EmailConfirmation(input); }, fileOption);
 
 return await rootCommand.InvokeAsync(args);
 
 static void ValidateFile(FileSystemInfo file)
 {
     Console.WriteLine($"Starting: Validating file {file.FullName} ...");
-    try
-    {
-        var processor = new Processor();
-        processor.Execute(new FileStream(file.FullName, FileMode.Open));
-        Console.WriteLine($"Completed Validation succeeded {file.FullName}");
-    }
-    catch (Exception e)
-    {
-        Console.WriteLine($"Error: {file.Name} validation failed");
-    }
+    Console.WriteLine(!ValidateCidFile(file)
+        ? $"Error: {file.Name} validation failed"
+        : $"Completed Validation succeeded {file.FullName}");
 }
 
 static void ExtractImages(FileSystemInfo file, DirectoryInfo? output)
@@ -86,4 +83,30 @@ static void ExtractImages(FileSystemInfo file, DirectoryInfo? output)
         Console.WriteLine($"Error: Extracting images failed {file.Name} {e.Message} ");
     }
 
+}
+
+static void EmailConfirmation(FileSystemInfo file)
+{
+    Console.WriteLine($"Starting: Confirmation email {file.FullName} ...");
+    if (!ValidateCidFile(file))
+    {
+        Console.WriteLine($"Error: {file.Name} failed validation. Email NOT sent");
+        return;
+        
+    }
+    Console.WriteLine($"Completed: Confirmation email {file.FullName} ...");
+}
+
+static bool ValidateCidFile(FileSystemInfo file)
+{
+    try
+    {
+        var processor = new Processor();
+        processor.Execute(new FileStream(file.FullName, FileMode.Open));
+        return true; 
+    }
+    catch (Exception e)
+    {
+        return false; 
+    }
 }
