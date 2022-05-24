@@ -1,0 +1,12 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "SnvX9Command": {
+      "commandName": "Project",
+      "commandLineArgs": "validate -f c:\\temp\\check21\\2.831RichlandCounty_20220315_1508_01_prod.c21",
+      "environmentVariables": {
+        
+      }
+    }
+  }
+}
