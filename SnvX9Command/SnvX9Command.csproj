@@ -20,7 +20,10 @@
 
     <ItemGroup>
       <None Remove="confirm-email.cshtml" />
-      <Content Include="confirm-email.cshtml">
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Templates\confirm-email.cshtml">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
     </ItemGroup>

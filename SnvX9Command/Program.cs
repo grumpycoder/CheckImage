@@ -211,7 +211,7 @@ static void SendMail(X9File x9File, string fileName)
         .From("marklawrence@synovus.com")
         .To(customer?.ContactEmail)
         .Subject($"Deposit Received: {model.FileName}")
-        .UsingTemplateFromFile("confirm-email.cshtml", model: model);
+        .UsingTemplateFromFile("templates\\confirm-email.cshtml", model: model);
 
     email.Send();
 
