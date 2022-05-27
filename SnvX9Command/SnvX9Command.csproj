@@ -5,12 +5,24 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="CompAnalytics.X9" Version="0.2.0" />
+      <PackageReference Include="FluentEmail.Core" Version="3.0.2" />
+      <PackageReference Include="FluentEmail.Razor" Version="3.0.2" />
+      <PackageReference Include="FluentEmail.Smtp" Version="3.0.2" />
+      <PackageReference Include="MySql.EntityFrameworkCore" Version="6.0.1" />
       <PackageReference Include="System.CommandLine" Version="2.0.0-beta3.22114.1" />
       <PackageReference Include="X9.Framework" Version="1.0.7361.18408" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="confirm-email.cshtml" />
+      <Content Include="confirm-email.cshtml">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

@@ -1,0 +1,88 @@
+@model EmailModel
+
+<style type="text/css">
+dt {
+            float: left;
+            clear: left;
+            width: 110px;
+            font-weight: bold;
+        }
+  
+        dt::after {
+            content: ":";
+        }
+  
+        dd {
+            margin: 0 0 0 80px;
+            padding: 0 0 0.5em 0;
+        }
+
+dl dd dl:nth-of-type(1) {
+  margin-left: -60px;
+}
+
+
+</style>
+
+<section>
+    Your deposit was received for processing. Please review the summary information below.
+
+    <h2>
+        <strong>@Model.CustomerName</strong><br/>
+    </h2>
+    <p>Image cash letter file has passed x9.37 VLI validation.</p>
+</section>
+
+<section>
+
+    <dl>
+        <dt>Filename</dt>
+        <dd>@Model.FileName</dd>
+        <dt>File Header</dt>
+        <dd>
+            <dl>
+                <dt>Date</dt>
+                <dd>@Model.FileHeaderDate</dd>
+                <dt>Time</dt>
+                <dd>@Model.FileHeaderTime</dd>
+                <dt>Client</dt>
+                <dd>@Model.CustomerName</dd>
+            </dl>
+        </dd>
+    </dl>
+
+</section>
+
+<section>
+    <div>
+        <h3>Cash Letters</h3>
+        <hr/>
+        <dl>
+            @foreach (var item in Model.CashLetters)
+            {
+                <div>
+                    <dt>Cash Letter [@item.BundleSequence]</dt>
+                    <dd>&nbsp;</dd>
+                    <dt>Credit Account</dt>
+                    <dd>@item.CreditAccount</dd>
+                    <dt>Credit Serial</dt>
+                    <dd>@item.Serial</dd>
+                    <dt>Check Records</dt>
+                    <dd>@item.CheckRecordsCount</dd>
+                    <dt>Check Images</dt>
+                    <dd>@item.CheckImagesCount</dd>
+                    <dt>Check Total</dt>
+                    <dd>@($"{item.CheckTotal:C}")</dd>
+                </div>
+                <hr/>
+            }
+        </dl>
+    </div>
+
+</section>
+
+<footer>
+    <p>
+        <strong>NOTICE:</strong> This communication is intended only for the person or entity to whom it is addressed and may contain confidential, proprietary, and/or privileged material. Unless you are the intended addressee, any review, reliance, dissemination, distribution, copying or use whatsoever of this communication is strictly prohibited. If you received this in error, please reply immediately and delete the material from all computers. Email sent through the Internet is not secure. Do not use email to send us confidential information such as credit card numbers, PIN numbers, passwords, Social Security Numbers, Account numbers, or other important and confidential information.
+    </p>
+</footer>

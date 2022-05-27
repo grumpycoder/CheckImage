@@ -3,7 +3,7 @@
   "profiles": {
     "SnvX9Command": {
       "commandName": "Project",
-      "commandLineArgs": "extract -f c:\\temp\\check21\\1.165CityofApopka_20220317_1349_prod.c21",
+      "commandLineArgs": "email-confirm -f c:\\temp\\check21\\165CityOfCanton_20200625_1123_prod.c21",
       "environmentVariables": {
         
       }
