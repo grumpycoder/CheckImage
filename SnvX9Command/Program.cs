@@ -5,6 +5,7 @@ using CompAnalytics.X9;
 using FluentEmail.Core;
 using FluentEmail.Razor;
 using FluentEmail.Smtp;
+using SnvX9Command;
 using SnvX9Command.Data;
 using SnvX9Command.Entities;
 using SnvX9Command.Helpers;
@@ -228,7 +229,7 @@ static EmailModel BuildEmailModel(X9File file, string filePath)
     };
     foreach (var item in file.CashLetter.Bundles)
     {
-        model.CashLetters.Add(new CashLetter()
+        model.CashLetters.Add(new CashLetterModel()
         {
             CreditAccount = item.BundleHeader.BundleClientInstitutionRoutingNumber,
             Serial = "0",
@@ -240,22 +241,4 @@ static EmailModel BuildEmailModel(X9File file, string filePath)
     }
 
     return model; 
-}
-public class EmailModel
-{
-    public string CustomerName { get; set; } = string.Empty;
-    public string? FileName { get; set; }
-    public string? FileHeaderDate { get; set; }
-    public string? FileHeaderTime { get; set; }
-    public IList<CashLetter> CashLetters { get; set; } = new List<CashLetter>();
-}
-
-public class CashLetter
-{
-    public int BundleSequence { get; set; }
-    public string CreditAccount { get; set; } = string.Empty;
-    public string Serial { get; set; } = string.Empty;
-    public int CheckRecordsCount { get; set; }
-    public int CheckImagesCount { get; set; }
-    public decimal CheckTotal { get; set; }
 }
