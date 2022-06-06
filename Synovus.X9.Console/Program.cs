@@ -1,5 +1,4 @@
 ﻿using System.CommandLine;
-using System.CommandLine.Parsing;
 
 var fileOption = new Option<FileInfo>(
     name: "--file",
@@ -7,21 +6,18 @@ var fileOption = new Option<FileInfo>(
     parseArgument: result =>
     {
         var filePath = result.Tokens.Single().Value;
-        if (!File.Exists(filePath))
-        {
-            result.ErrorMessage = "File does not exist";
-            return null;
-        }
-        return new FileInfo(filePath);
+        if (File.Exists(filePath)) return new FileInfo(filePath);
+        result.ErrorMessage = "File does not exist";
+        return null;
     });
-fileOption.AddAlias("-f");
 fileOption.IsRequired = true; 
+fileOption.AddAlias("-f");
 
 var outputOption = new Option<DirectoryInfo>(
-    name: "--output", 
-    description: "Directory to extract"    );
+    name: "--output",
+    description: "Directory to extract");
 outputOption.AddAlias("-o");
-outputOption.IsRequired = true; 
+outputOption.IsRequired = true;
 
 var root = new RootCommand("Command Line Utility for X9 formatted Check Image File processing");
 root.AddGlobalOption(fileOption);
