@@ -9,7 +9,7 @@ public static class MailService
 {
     public static void Mail(FileInfo file)
     {
-        if (FileService.Validate(file))
+        if (FileService.Validate(file).Status)
         {
             Console.WriteLine($"Sent confirmation email {file.Name}");
             return;

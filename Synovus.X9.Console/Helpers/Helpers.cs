@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using Org.BouncyCastle.Utilities;
 
 public static class Helpers
 {
@@ -18,7 +19,10 @@ public static class Helpers
 
     public static decimal ToDecimal(this string @this)
     {
-        return Convert.ToDecimal(@this);
+        var wholeNumber = @this.Substring(0, @this.Length - 2);
+        var decimalNumber = @this.Substring(@this.Length - 2);
+        var n = $"{wholeNumber}.{decimalNumber}"; 
+        return Convert.ToDecimal(n);
     }
 
     public static string ToDate(this string @this)
